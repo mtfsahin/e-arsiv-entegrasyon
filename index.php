@@ -440,7 +440,7 @@ function earsiv_fatura(){
         
         // Fatura bilgileri oluşturulur
         $document = new InputDocument();
-        $document->xmlContent = file_get_contents('fatura.xml');
+        $document->xmlContent = file_get_contents('faturanew.xml');
         $document->destinationUrn = 'mustafa9889.ma@gmail.com';
         $document->documentDate = '2023-03-06';
         $document->documentUUID = 'abf8a880-aa37-40bb-8527-569cff5f659e';
@@ -454,7 +454,7 @@ function earsiv_fatura(){
         // Yanıt işlenir
         foreach ($response as $res) {
 
-            echo 'İşlem kodu: ' . $res->code . '<br>' .  $res->document_uuid ;
+            echo 'İşlem kodu: ' . $res->code . '<br>' ;
             echo 'Açıklama: ' . $res->explanation . '<br>';
 
             if (isset($res->cause)) {
@@ -468,3 +468,4 @@ function earsiv_fatura(){
 }
 
 
+earsiv_fatura();
