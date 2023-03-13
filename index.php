@@ -41,7 +41,7 @@ $invoice->appendChild($CustomizationID);
 $ProfileID = $doc->createElementNS($urn, 'cbc:ProfileID', 'EARSIVFATURA');
 $invoice->appendChild($ProfileID);
 
-// ID alanı değişecek
+// ID alanı değişecek - generate -yıl+ay+gun+random
 $ID = $doc->createElementNS($urn, 'cbc:ID', 'ABC2023030656789');
 $invoice->appendChild($ID);
 
@@ -49,148 +49,362 @@ $invoice->appendChild($ID);
 $CopyIndicator = $doc->createElementNS($urn, 'cbc:CopyIndicator', 'false');
 $invoice->appendChild($CopyIndicator);
 
+// UUID eklendi
+$UUID = $doc->createElementNS($urn, 'cbc:UUID', 'abf8a880-aa37-40bb-8527-569cff5f659e');
+$invoice->appendChild($UUID);
+
 // IssueDate
 $IssueDate = $doc->createElementNS($urn, 'cbc:IssueDate', '2023-03-10');
 $invoice->appendChild($IssueDate);
+
+// IssueTime eklendi
+$IssueTime = $doc->createElementNS($urn, 'cbc:IssueTime', '13:44:22');
+$invoice->appendChild($IssueTime);
 
 // InvoiceTypeCode
 $InvoiceTypeCode = $doc->createElementNS($urn, 'cbc:InvoiceTypeCode', 'SATIS');
 $invoice->appendChild($InvoiceTypeCode);
 
+// Note eklendi
+$Note = $doc->createElementNS($urn, 'cbc:Note', 'Yalnız #Bir TL, OnSekiz Kr#');
+$invoice->appendChild($Note);
+
+
 // DocumentCurrencyCode
 $DocumentCurrencyCode = $doc->createElementNS($urn, 'cbc:DocumentCurrencyCode', 'TRY');
 $invoice->appendChild($DocumentCurrencyCode);
 
-// AccountingSupplierParty
-$AccountingSupplierParty = $doc->createElementNS($urna, 'cac:AccountingSupplierParty');
-$invoice->appendChild($AccountingSupplierParty);
-
-// Party
-$Party = $doc->createElementNS($urna, 'cac:Party');
-$AccountingSupplierParty->appendChild($Party);
+// LineCountNumeric eklendi
+$LineCountNumeric = $doc->createElementNS($urn, 'cbc:LineCountNumeric', '1');
+$invoice->appendChild($LineCountNumeric);
 
 
-// PartyIdentification
-$PartyIdentification = $doc->createElementNS($urna, 'cac:PartyIdentification');
-$AccountingSupplierParty->appendChild($PartyIdentification);
-$ID = $doc->createElementNS($urn, 'cbc:ID', '12345');
-$PartyIdentification->appendChild($ID);
 
-// PartyName
-$PartyName = $doc->createElementNS($urna, 'cac:PartyName');
-$AccountingSupplierParty->appendChild($PartyName);
-$Name = $doc->createElementNS($urn, 'cbc:Name', 'Mustafa');
-$PartyName->appendChild($Name);
+// AdditionalDocumentReference elemanını oluşturuldu ve eklendi
+$additionalDocRef = $doc->createElementNS($urna, 'cac:AdditionalDocumentReference');
+$invoice->appendChild($additionalDocRef);
 
-// PartyLegalEntity
-$PartyLegalEntity = $doc->createElementNS($urna, 'cac:PartyLegalEntity');
-$AccountingSupplierParty->appendChild($PartyLegalEntity);
-$RegistrationName = $doc->createElementNS($urn, 'cbc:RegistrationName', 'Mustafa');
-$PartyLegalEntity->appendChild($RegistrationName);
+$id = $doc->createElementNS($urn, 'cbc:ID', 'a1bc7e63-87e0-46b0-bc5b-5107e652dc5b');
+$additionalDocRef->appendChild($id);
 
-// AccountingCustomerParty
-$AccountingCustomerParty = $doc->createElementNS($urna, 'cac:AccountingCustomerParty');
-$invoice->appendChild($AccountingCustomerParty);
+$issueDate = $doc->createElementNS($urn, 'cbc:IssueDate', '2023-03-05');
+$additionalDocRef->appendChild($issueDate);
 
-// Party
-$Party = $doc->createElementNS($urna, 'cac:Party');
-$AccountingCustomerParty->appendChild($Party);
+$docTypeCode = $doc->createElementNS($urn, 'cbc:DocumentTypeCode', 'GONDERIM_SEKLI');
+$additionalDocRef->appendChild($docTypeCode);
 
-// PartyIdentification
-$PartyIdentification = $doc->createElementNS($urna, 'cac:PartyIdentification');
-$Party->appendChild($PartyIdentification);
-$ID = $doc->createElementNS($urn, 'cbc:ID', '12345');
-$PartyIdentification->appendChild($ID);
+$docType = $doc->createElementNS($urn, 'cbc:DocumentType', 'ELEKTRONIK');
+$additionalDocRef->appendChild($docType);
 
-// PartyName
-$PartyName = $doc->createElementNS($urna, 'cac:PartyName');
-$Party->appendChild($PartyName);
-$Name = $doc->createElementNS($urn, 'cbc:Name', 'alıcımustafa');
-$PartyName->appendChild($Name);
+$invoice->appendChild($additionalDocRef);
 
-// PartyLegalEntity
-$PartyLegalEntity = $doc->createElementNS($urna, 'cac:PartyLegalEntity');
-$Party->appendChild($PartyLegalEntity);
-$RegistrationName = $doc->createElementNS($urn, 'cbc:RegistrationName', 'alıcımustafa');
-$PartyLegalEntity->appendChild($RegistrationName);
+// additionalDocumentReference elemanını oluşturuldu ve eklendi
+$additionalDocumentReference = $doc->createElementNS($urna, 'cac:AdditionalDocumentReference');
+$invoice->appendChild($additionalDocumentReference);
+
+$ID = $doc->createElementNS($urn, 'cbc:ID', 'a1bc7e63-87e0-46b0-bc5b-5107e652dc5b');
+$additionalDocumentReference->appendChild($ID);
+
+$issueDate = $doc->createElementNS($urn, 'cbc:IssueDate', '2023-03-05');
+$additionalDocumentReference->appendChild($issueDate);
+
+$documentTypeCode = $doc->createElementNS($urn, 'cbc:DocumentTypeCode', 'GONDERIM_SEKLI');
+$additionalDocumentReference->appendChild($documentTypeCode);
+
+$documentType = $doc->createElementNS($urn, 'cbc:DocumentType', 'ELEKTRONIK');
+$additionalDocumentReference->appendChild($documentType);
 
 
-// TaxTotal
+//Signature alanı eklendi
+$signature = $doc->createElementNS($urna, 'cac:Signature');
+$invoice->appendChild($signature);
+
+$signatureID = $doc->createElementNS($urn, 'cbc:ID', '5750464002');
+$signatureID->setAttribute('schemeID', 'VKN_TCKN');
+$signature->appendChild($signatureID);
+
+$signatoryParty = $doc->createElementNS($urna, 'cac:SignatoryParty');
+$signature->appendChild($signatoryParty);
+
+$partyIdentification = $doc->createElementNS($urna, 'cac:PartyIdentification');
+$signatoryParty->appendChild($partyIdentification);
+
+$partyID = $doc->createElementNS($urn, 'cbc:ID', '5750464002');
+$partyID->setAttribute('schemeID', 'VKN');
+$partyIdentification->appendChild($partyID);
+
+$postalAddress = $doc->createElementNS($urna, 'cac:PostalAddress');
+$signatoryParty->appendChild($postalAddress);
+
+$room = $doc->createElementNS($urn, 'cbc:Room', '201-204');
+$postalAddress->appendChild($room);
+
+$streetName = $doc->createElementNS($urn, 'cbc:StreetName', 'A.T.G.B. Üniversiteler Mah. 1605. Cad.');
+$postalAddress->appendChild($streetName);
+
+$buildingName = $doc->createElementNS($urn, 'cbc:BuildingName', 'Cyberpark Vakıf Binası');
+$postalAddress->appendChild($buildingName);
+
+$buildingNumber = $doc->createElementNS($urn, 'cbc:BuildingNumber', '3');
+$postalAddress->appendChild($buildingNumber);
+
+$citySubdivisionName = $doc->createElementNS($urn, 'cbc:CitySubdivisionName', 'Çankaya');
+$postalAddress->appendChild($citySubdivisionName);
+
+$cityName = $doc->createElementNS($urn, 'cbc:CityName', 'Ankara');
+$postalAddress->appendChild($cityName);
+
+$postalZone = $doc->createElementNS($urn, 'cbc:PostalZone', '06800');
+$postalAddress->appendChild($postalZone);
+
+$country = $doc->createElementNS($urna, 'cac:Country');
+$postalAddress->appendChild($country);
+
+$countryName = $doc->createElementNS($urn, 'cbc:Name', 'Türkiye');
+$country->appendChild($countryName);
+
+$digitalSignatureAttachment = $doc->createElementNS($urna, 'cac:DigitalSignatureAttachment');
+$signature->appendChild($digitalSignatureAttachment);
+
+$externalReference = $doc->createElementNS($urna, 'cac:ExternalReference');
+$digitalSignatureAttachment->appendChild($externalReference);
+
+$externalURI = $doc->createElementNS($urn, 'cbc:URI', '#Signature_abf8a880-aa37-40bb-8527-569cff5f659e');
+$externalReference->appendChild($externalURI);
+
+
+
+
+
+// AccountingSupplierParty elemanını oluşturuldu ve eklendi
+$accountingSupplierParty = $doc->createElementNS($urna, 'cac:AccountingSupplierParty');
+$invoice->appendChild($accountingSupplierParty);
+
+// Party elemanını oluşturuldu ve eklendi
+$party = $doc->createElementNS($urna, 'cac:Party');
+$accountingSupplierParty->appendChild($party);
+
+
+// PartyIdentification elemanını oluşturuldu ve eklendi
+$partyIdentification = $doc->createElementNS($urna, 'cac:PartyIdentification');
+$party->appendChild($partyIdentification);
+
+// ID elemanını oluşturuldu şemaya eklendi  
+$id = $doc->createElementNS($urn, 'cbc:ID', '0102056568');
+$id->setAttribute('schemeID', 'VKN');
+$partyIdentification->appendChild($id);
+
+// PartyName elemanını oluşturuldu ve eklendi
+$partyName = $doc->createElementNS($urna, 'cac:PartyName');
+$party->appendChild($partyName);
+
+// Name elemanını oluşturuldu ve eklendi
+$name = $doc->createElementNS($urn, 'cbc:Name', 'Sahane Kitap');
+$partyName->appendChild($name);
+
+// PostalAddress elemanını oluşturuldu ve eklendi
+$postalAddress = $doc->createElementNS($urna, 'cac:PostalAddress');
+$party->appendChild($postalAddress);
+
+// CitySubdivisionName elemanını oluşturuldu ve eklendi
+$citySubdivisionName = $doc->createElementNS($urn, 'cbc:CitySubdivisionName', 'Çankaya');
+$postalAddress->appendChild($citySubdivisionName);
+
+// CityName elemanını oluşturuldu ve eklendi
+$cityName = $doc->createElementNS($urn, 'cbc:CityName', 'Ankara');
+$postalAddress->appendChild($cityName);
+
+// Country elemanını oluşturuldu ve eklendi
+$country = $doc->createElementNS($urna, 'cac:Country');
+$postalAddress->appendChild($country);
+
+// Name elemanını oluşturuldu ve eklendi
+$countryName = $doc->createElementNS($urn, 'cbc:Name', 'Türkiye');
+$country->appendChild($countryName);
+
+// PartyTaxScheme elemanını oluşturuldu ve eklendi
+$partyTaxScheme = $doc->createElementNS($urna, 'cac:PartyTaxScheme');
+$party->appendChild($partyTaxScheme);
+
+// TaxScheme elemanını oluşturuldu ve eklendi
+$taxScheme = $doc->createElementNS($urna, 'cac:TaxScheme');
+$partyTaxScheme->appendChild($taxScheme);
+
+// Name elemanını oluşturuldu ve eklendi
+$taxSchemeName = $doc->createElementNS($urn, 'cbc:Name', 'DİKİMEVİ VERGİ DAİRESİ MÜDÜRLÜĞÜ');
+$taxScheme->appendChild($taxSchemeName);
+
+// Contact elemanını oluşturuldu ve eklendi
+$contact = $doc->createElementNS($urna, 'cac:Contact');
+$party->appendChild($contact);
+
+// ElectronicMail elemanını oluşturuldu ve eklendi
+$electronicMail = $doc->createElementNS($urn, 'cbc:ElectronicMail', 'ozgur.ari@kolaysoft.com.tr');
+$contact->appendChild($electronicMail);
+
+
+// AccountingCustomerParty güncellendi
+$accountingCustomerParty = $doc->createElementNS($urna, 'AccountingCustomerParty');
+$party = $doc->createElementNS($urna, 'Party');
+$accountingCustomerParty->appendChild($party);
+$invoice->appendChild($accountingCustomerParty);
+
+
+$partyIdentification = $doc->createElementNS($urn, 'PartyIdentification');
+$id = $doc->createElementNS($urn, 'ID', '11111111111');
+$id->setAttribute('schemeID', 'TCKN');
+$partyIdentification->appendChild($id);
+$party->appendChild($partyIdentification);
+
+$postalAddress = $doc->createElementNS($urna, 'PostalAddress');
+$citySubdivisionName = $doc->createElementNS($urna, 'CitySubdivisionName', 'Çankaya');
+$postalAddress->appendChild($citySubdivisionName);
+$cityName = $doc->createElementNS($urna, 'CityName', 'Ankara');
+$postalAddress->appendChild($cityName);
+$country = $doc->createElementNS($urna, 'Country');
+$name = $doc->createElementNS($urna, 'Name', 'Türkiye');
+$country->appendChild($name);
+$postalAddress->appendChild($country);
+$party->appendChild($postalAddress);
+
+$partyTaxScheme = $doc->createElementNS($urn, 'PartyTaxScheme');
+$taxScheme = $doc->createElementNS($urn, 'TaxScheme');
+$name = $doc->createElementNS($urn, 'Name', '');
+$taxScheme->appendChild($name);
+$partyTaxScheme->appendChild($taxScheme);
+$party->appendChild($partyTaxScheme);
+
+$person = $doc->createElementNS($urna, 'Person');
+$firstName = $doc->createElementNS($urna, 'FirstName', 'test');
+$person->appendChild($firstName);
+$familyName = $doc->createElementNS($urna, 'FamilyName', 'test');
+$person->appendChild($familyName);
+$party->appendChild($person);
+
+// AllowanceCharge eklendi 
+$AllowanceCharge = $doc->createElementNS($urna, 'cac:AllowanceCharge');
+$invoice->appendChild($AllowanceCharge);
+
+$ChargeIndicator = $doc->createElementNS($urn, 'cbc:ChargeIndicator', 'false');
+$AllowanceCharge->appendChild($ChargeIndicator);
+
+$id = $doc->createElementNS($urn, 'Amount', '0');
+$id->setAttribute('currencyID', 'TRY');
+$AllowanceCharge->appendChild($id);
+
+
+// TaxTotal güncellendi
 $TaxTotal = $doc->createElementNS($urna, 'cac:TaxTotal');
 $invoice->appendChild($TaxTotal);
 
-// TaxAmount
-$TaxAmount = $doc->createElementNS($urn, 'cbc:TaxAmount', '1000.00');
+$TaxAmount = $doc->createElementNS($urn, 'cbc:TaxAmount', '0.18');
+$TaxAmount->setAttribute('currencyID', 'TRY');
 $TaxTotal->appendChild($TaxAmount);
 
-// TaxSubtotal
 $TaxSubtotal = $doc->createElementNS($urna, 'cac:TaxSubtotal');
 $TaxTotal->appendChild($TaxSubtotal);
 
-// TaxableAmount
-$TaxableAmount = $doc->createElementNS($urn, 'cbc:TaxableAmount', '5000.00');
+$TaxableAmount = $doc->createElementNS($urn, 'cbc:TaxableAmount', '1');
+$TaxableAmount->setAttribute('currencyID', 'TRY');
 $TaxSubtotal->appendChild($TaxableAmount);
 
-// TaxCategory
+$TaxAmount = $doc->createElementNS($urn, 'cbc:TaxAmount', '0.18');
+$TaxAmount->setAttribute('currencyID', 'TRY');
+$TaxSubtotal->appendChild($TaxAmount);
+
+$Percent = $doc->createElementNS($urn, 'cbc:Percent', '18');
+$TaxSubtotal->appendChild($Percent);
+
 $TaxCategory = $doc->createElementNS($urna, 'cac:TaxCategory');
 $TaxSubtotal->appendChild($TaxCategory);
 
-// TaxScheme
 $TaxScheme = $doc->createElementNS($urna, 'cac:TaxScheme');
 $TaxCategory->appendChild($TaxScheme);
 
-// ID
-$ID = $doc->createElementNS($urn, 'cbc:ID', '0015');
-$TaxScheme->appendChild($ID);
-
-// Name
-$Name = $doc->createElementNS($urn, 'cbc:Name', 'KDV');
+$Name = $doc->createElementNS($urn, 'cbc:Name', 'GERÇEK USULDE KATMA DEĞER VERGİSİ');
 $TaxScheme->appendChild($Name);
 
-// TaxTypeCode
 $TaxTypeCode = $doc->createElementNS($urn, 'cbc:TaxTypeCode', '0015');
-$TaxCategory->appendChild($TaxTypeCode);
+$TaxScheme->appendChild($TaxTypeCode);
 
-// LegalMonetaryTotal
+
+//LegalMonetaryTotal güncellendi
 $LegalMonetaryTotal = $doc->createElementNS($urna, 'cac:LegalMonetaryTotal');
 $invoice->appendChild($LegalMonetaryTotal);
 
-// LineExtensionAmount
-$LineExtensionAmount = $doc->createElementNS($urn, 'cbc:LineExtensionAmount', '5000.00');
+$LineExtensionAmount = $doc->createElementNS($urn, 'cbc:LineExtensionAmount');
+$LineExtensionAmount->setAttribute('currencyID', 'TRY');
+$LineExtensionAmount->nodeValue = '1.00';
 $LegalMonetaryTotal->appendChild($LineExtensionAmount);
 
-// TaxExclusiveAmount
-$TaxExclusiveAmount = $doc->createElementNS($urn, 'cbc:TaxExclusiveAmount', '4000.00');
-$LegalMonetaryTotal->appendChild($TaxExclusiveAmount);
-
-// TaxInclusiveAmount
-$TaxInclusiveAmount = $doc->createElementNS($urn, 'cbc:TaxInclusiveAmount', '110.00');
-$TaxInclusiveAmount->setAttribute('currencyID', 'TRY');
-$LegalMonetaryTotal->appendChild($TaxInclusiveAmount);
-
-// LegalMonetaryTotal (Invoice düğümü içinde)
-$LegalMonetaryTotal = $doc->createElementNS($urna, 'cac:LegalMonetaryTotal');
-$invoice->appendChild($LegalMonetaryTotal);
-
-// LineExtensionTotal
-$LineExtensionTotal = $doc->createElementNS($urn, 'cbc:LineExtensionTotal', '100.00');
-$LineExtensionTotal->setAttribute('currencyID', 'TRY');
-$LegalMonetaryTotal->appendChild($LineExtensionTotal);
-
-// TaxExclusiveAmount
-$TaxExclusiveAmount = $doc->createElementNS($urn, 'cbc:TaxExclusiveAmount', '100.00');
+$TaxExclusiveAmount = $doc->createElementNS($urn, 'cbc:TaxExclusiveAmount');
 $TaxExclusiveAmount->setAttribute('currencyID', 'TRY');
+$TaxExclusiveAmount->nodeValue = '1.00';
 $LegalMonetaryTotal->appendChild($TaxExclusiveAmount);
 
-// TaxInclusiveAmount
-$TaxInclusiveAmount = $doc->createElementNS($urn, 'cbc:TaxInclusiveAmount', '110.00');
+$TaxInclusiveAmount = $doc->createElementNS($urn, 'cbc:TaxInclusiveAmount');
 $TaxInclusiveAmount->setAttribute('currencyID', 'TRY');
+$TaxInclusiveAmount->nodeValue = '1.18';
 $LegalMonetaryTotal->appendChild($TaxInclusiveAmount);
 
-// PayableAmount
-$PayableAmount = $doc->createElementNS($urn, 'cbc:PayableAmount', '110.00');
+$AllowanceTotalAmount = $doc->createElementNS($urn, 'cbc:AllowanceTotalAmount');
+$AllowanceTotalAmount->setAttribute('currencyID', 'TRY');
+$AllowanceTotalAmount->nodeValue = '0.00';
+$LegalMonetaryTotal->appendChild($AllowanceTotalAmount);
+
+$PayableAmount = $doc->createElementNS($urn, 'cbc:PayableAmount');
 $PayableAmount->setAttribute('currencyID', 'TRY');
+$PayableAmount->nodeValue = '1.18';
 $LegalMonetaryTotal->appendChild($PayableAmount);
+
+
+
+// InvoiceLine ekle
+$InvoiceLine = $doc->createElementNS($urna, 'cac:InvoiceLine');
+$invoice->appendChild($InvoiceLine);
+
+// ID ekle
+$ID = $doc->createElementNS($urn, 'cbc:ID', '1');
+$InvoiceLine->appendChild($ID);
+
+// InvoicedQuantity ekle
+$InvoicedQuantity = $doc->createElementNS($urn, 'cbc:InvoicedQuantity', '1');
+$InvoicedQuantity->setAttribute('unitCode', 'C62');
+$InvoiceLine->appendChild($InvoicedQuantity);
+
+// LineExtensionAmount ekle
+$LineExtensionAmount = $doc->createElementNS($urn, 'cbc:LineExtensionAmount', '1');
+$LineExtensionAmount->setAttribute('currencyID', 'TRY');
+$InvoiceLine->appendChild($LineExtensionAmount);
+
+// TaxTotal ekle
+$TaxTotal = $doc->createElementNS($urna, 'cac:TaxTotal');
+$InvoiceLine->appendChild($TaxTotal);
+
+// TaxAmount ekle
+$TaxAmount = $doc->createElementNS($urn, 'cbc:TaxAmount', '0.18');
+$TaxAmount->setAttribute('currencyID', 'TRY');
+$TaxTotal->appendChild($TaxAmount);
+
+// TaxSubtotal ekle
+$TaxSubtotal = $doc->createElementNS($urna, 'cac:TaxSubtotal');
+$TaxTotal->appendChild($TaxSubtotal);
+
+// TaxableAmount ekle
+$TaxableAmount = $doc->createElementNS($urn, 'cbc:TaxableAmount', '1');
+$TaxableAmount->setAttribute('currencyID', 'TRY');
+$TaxSubtotal->appendChild($TaxableAmount);
+
+// TaxAmount ekle
+$TaxAmount2 = $doc->createElementNS($urn, 'cbc:TaxAmount', '0.18');
+$TaxAmount2->setAttribute('currencyID', 'TRY');
+$TaxSubtotal->appendChild($TaxAmount2);
+
+// Percent ekle
+$Percent = $doc->createElementNS($urn, 'cbc:Percent', '18');
+$TaxSubtotal->appendChild($Percent);
+
+
 
 // convert the XML object to string
 $xmlString = $doc->saveXML();

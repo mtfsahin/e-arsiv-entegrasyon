@@ -22,25 +22,43 @@ xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2"
 
     
     <cbc:ID>ABC2023030656789</cbc:ID>
+
     <cbc:CopyIndicator>false</cbc:CopyIndicator>
+
     <cbc:UUID>abf8a880-aa37-40bb-8527-569cff5f659e</cbc:UUID>
+
+
+
     <cbc:IssueDate>2023-03-06</cbc:IssueDate>
+
+
     <cbc:IssueTime>13:44:22</cbc:IssueTime>
     <cbc:InvoiceTypeCode>SATIS</cbc:InvoiceTypeCode>
+
     <cbc:Note>Yalnız #Bir TL, OnSekiz Kr#</cbc:Note>
+
+
     <cbc:DocumentCurrencyCode>TRY</cbc:DocumentCurrencyCode>
     <cbc:LineCountNumeric>1</cbc:LineCountNumeric>
+
     <cac:AdditionalDocumentReference>
         <cbc:ID>18ac891e-92df-42d1-9193-5ad9b507f013</cbc:ID>
         <cbc:IssueDate>2023-03-05</cbc:IssueDate>
         <cbc:DocumentType>XSLT</cbc:DocumentType>
     </cac:AdditionalDocumentReference>
+
+
     <cac:AdditionalDocumentReference>
         <cbc:ID>a1bc7e63-87e0-46b0-bc5b-5107e652dc5b</cbc:ID>
         <cbc:IssueDate>2023-03-05</cbc:IssueDate>
         <cbc:DocumentTypeCode>GONDERIM_SEKLI</cbc:DocumentTypeCode>
         <cbc:DocumentType>ELEKTRONIK</cbc:DocumentType>
     </cac:AdditionalDocumentReference>
+
+
+
+
+
     <cac:Signature>
         <cbc:ID schemeID="VKN_TCKN">5750464002</cbc:ID>
         <cac:SignatoryParty>
@@ -66,6 +84,10 @@ xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2"
             </cac:ExternalReference>
         </cac:DigitalSignatureAttachment>
     </cac:Signature>
+
+
+
+
     <cac:AccountingSupplierParty>
         <cac:Party>
             <cac:PartyIdentification>
@@ -91,6 +113,10 @@ xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2"
             </cac:Contact>
         </cac:Party>
     </cac:AccountingSupplierParty>
+
+
+
+
     <cac:AccountingCustomerParty>
         <cac:Party>
             <cac:PartyIdentification>
@@ -114,10 +140,14 @@ xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2"
             </cac:Person>
         </cac:Party>
     </cac:AccountingCustomerParty>
+
+
+
     <cac:AllowanceCharge>
         <cbc:ChargeIndicator>false</cbc:ChargeIndicator>
         <cbc:Amount currencyID="TRY">0</cbc:Amount>
     </cac:AllowanceCharge>
+
     <cac:TaxTotal>
         <cbc:TaxAmount currencyID="TRY">0.18</cbc:TaxAmount>
         <cac:TaxSubtotal>
@@ -132,6 +162,9 @@ xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2"
             </cac:TaxCategory>
         </cac:TaxSubtotal>
     </cac:TaxTotal>
+
+
+
     <cac:LegalMonetaryTotal>
         <cbc:LineExtensionAmount currencyID="TRY">1.00</cbc:LineExtensionAmount>
         <cbc:TaxExclusiveAmount currencyID="TRY">1.00</cbc:TaxExclusiveAmount>
@@ -139,6 +172,8 @@ xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2"
         <cbc:AllowanceTotalAmount currencyID="TRY">0.00</cbc:AllowanceTotalAmount>
         <cbc:PayableAmount currencyID="TRY">1.18</cbc:PayableAmount>
     </cac:LegalMonetaryTotal>
+
+
     <cac:InvoiceLine>
         <cbc:ID>1</cbc:ID>
         <cbc:InvoicedQuantity unitCode="C62">1</cbc:InvoicedQuantity>
@@ -164,4 +199,6 @@ xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2"
             <cbc:PriceAmount currencyID="TRY">1</cbc:PriceAmount>
         </cac:Price>
     </cac:InvoiceLine>
+
+
 </Invoice>
