@@ -1,94 +1,37 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Invoice xmlns="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2"
-    xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2"
-    xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2">
-  <cbc:ID>123456</cbc:ID>
-  <cbc:IssueDate>2023-02-26</cbc:IssueDate>
-  <cac:AccountingSupplierParty>
-    <cac:Party>
-      <cac:PartyIdentification>
-        <cbc:ID>TR1234567890</cbc:ID>
-      </cac:PartyIdentification>
-      <cac:PartyName>
-        <cbc:Name>ABC Ltd.</cbc:Name>
-      </cac:PartyName>
-    </cac:Party>
-  </cac:AccountingSupplierParty>
-  <cac:AccountingCustomerParty>
-    <cac:Party>
-      <cac:PartyIdentification>
-        <cbc:ID>DE9876543210</cbc:ID>
-      </cac:PartyIdentification>
-      <cac:PartyName>
-        <cbc:Name>XYZ GmbH</cbc:Name>
-      </cac:PartyName>
-    </cac:Party>
-  </cac:AccountingCustomerParty>
-  <cac:TaxTotal>
-    <cbc:TaxAmount currencyID="TRY">18.9</cbc:TaxAmount>
-    <cac:TaxSubtotal>
-      <cbc:TaxableAmount currencyID="TRY">105.0</cbc:TaxableAmount>
-      <cbc:TaxAmount currencyID="TRY">18.9</cbc:TaxAmount>
-      <cac:TaxCategory>
-        <cbc:ID>S</cbc:ID>
-        <cbc:Percent>18.0</cbc:Percent>
-        <cac:TaxScheme>
-          <cbc:ID>VAT</cbc:ID>
-        </cac:TaxScheme>
-      </cac:TaxCategory>
-    </cac:TaxSubtotal>
-  </cac:TaxTotal>
-  <cac:LegalMonetaryTotal>
-    <cbc:LineExtensionAmount currencyID="TRY">105.0</cbc:LineExtensionAmount>
-    <cbc:TaxExclusiveAmount currencyID="TRY">105.0</cbc:TaxExclusiveAmount>
-    <cbc:TaxInclusiveAmount currencyID="TRY">123.9</cbc:TaxInclusiveAmount>
-    <cbc:PayableAmount currencyID="TRY">123.9</cbc:PayableAmount>
-  </cac:LegalMonetaryTotal>
-</Invoice>
-<?xml version="1.0" encoding="UTF-8"?>
-<Invoice xmlns="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2"
-        xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2"
-        xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2">
-  <cbc:ID>123456</cbc:ID>
-  <cbc:IssueDate>2023-02-26</cbc:IssueDate>
-  <cac:AccountingSupplierParty>
-    <cac:Party>
-      <cac:PartyIdentification>
-        <cbc:ID>TR1234567890</cbc:ID>
-      </cac:PartyIdentification>
-      <cac:PartyName>
-        <cbc:Name>ABC Ltd.</cbc:Name>
-      </cac:PartyName>
-    </cac:Party>
-  </cac:AccountingSupplierParty>
-  <cac:AccountingCustomerParty>
-    <cac:Party>
-      <cac:PartyIdentification>
-        <cbc:ID>DE9876543210</cbc:ID>
-      </cac:PartyIdentification>
-      <cac:PartyName>
-        <cbc:Name>XYZ GmbH</cbc:Name>
-      </cac:PartyName>
-    </cac:Party>
-  </cac:AccountingCustomerParty>
-  <cac:TaxTotal>
-    <cbc:TaxAmount currencyID="TRY">18.9</cbc:TaxAmount>
-    <cac:TaxSubtotal>
-      <cbc:TaxableAmount currencyID="TRY">105.0</cbc:TaxableAmount>
-      <cbc:TaxAmount currencyID="TRY">18.9</cbc:TaxAmount>
-      <cac:TaxCategory>
-        <cbc:ID>S</cbc:ID>
-        <cbc:Percent>18.0</cbc:Percent>
-        <cac:TaxScheme>
-          <cbc:ID>VAT</cbc:ID>
-        </cac:TaxScheme>
-      </cac:TaxCategory>
-    </cac:TaxSubtotal>
-  </cac:TaxTotal>
-  <cac:LegalMonetaryTotal>
-    <cbc:LineExtensionAmount currencyID="TRY">105.0</cbc:LineExtensionAmount>
-    <cbc:TaxExclusiveAmount currencyID="TRY">105.0</cbc:TaxExclusiveAmount>
-    <cbc:TaxInclusiveAmount currencyID="TRY">123.9</cbc:TaxInclusiveAmount>
-    <cbc:PayableAmount currencyID="TRY">123.9</cbc:PayableAmount>
-  </cac:LegalMonetaryTotal>
-</Invoice>
+<?xml 
+
+$accountingCustomerParty = $doc->createElementNS($urna, 'AccountingCustomerParty');
+$party = $doc->createElementNS($urna, 'Party');
+$accountingCustomerParty->appendChild($party);
+$root->appendChild($accountingCustomerParty);
+
+$partyIdentification = $doc->createElementNS($urna, 'PartyIdentification');
+$id = $doc->createElementNS($urn, 'ID', '11111111111');
+$id->setAttribute('schemeID', 'TCKN');
+$partyIdentification->appendChild($id);
+$party->appendChild($partyIdentification);
+
+$postalAddress = $doc->createElementNS($urna, 'PostalAddress');
+$citySubdivisionName = $doc->createElementNS($urn, 'CitySubdivisionName', 'Çankaya');
+$postalAddress->appendChild($citySubdivisionName);
+$cityName = $doc->createElementNS($urn, 'CityName', 'Ankara');
+$postalAddress->appendChild($cityName);
+$country = $doc->createElementNS($urna, 'Country');
+$name = $doc->createElementNS($urn, 'Name', 'Türkiye');
+$country->appendChild($name);
+$postalAddress->appendChild($country);
+$party->appendChild($postalAddress);
+
+$partyTaxScheme = $doc->createElementNS($urna, 'PartyTaxScheme');
+$taxScheme = $doc->createElementNS($urna, 'TaxScheme');
+$name = $doc->createElementNS($urn, 'Name', '');
+$taxScheme->appendChild($name);
+$partyTaxScheme->appendChild($taxScheme);
+$party->appendChild($partyTaxScheme);
+
+$person = $doc->createElementNS($urna, 'Person');
+$firstName = $doc->createElementNS($urn, 'FirstName', 'test');
+$person->appendChild($firstName);
+$familyName = $doc->createElementNS($urn, 'FamilyName', 'test');
+$person->appendChild($familyName);
+$party->appendChild($person);
