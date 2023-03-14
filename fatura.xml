@@ -23,17 +23,21 @@
 	<cbc:Note>Yalnız #Bir TL, OnSekiz Kr#</cbc:Note>
 	<cbc:DocumentCurrencyCode>TRY</cbc:DocumentCurrencyCode>
 	<cbc:LineCountNumeric>1</cbc:LineCountNumeric>
+
 	<cac:AdditionalDocumentReference>
 		<cbc:ID>18ac891e-92df-42d1-9193-5ad9b507f013</cbc:ID>
 		<cbc:IssueDate>2023-03-05</cbc:IssueDate>
 		<cbc:DocumentType>XSLT</cbc:DocumentType>
 	</cac:AdditionalDocumentReference>
+	
 	<cac:AdditionalDocumentReference>
 		<cbc:ID>a1bc7e63-87e0-46b0-bc5b-5107e652dc5b</cbc:ID>
 		<cbc:IssueDate>2023-03-05</cbc:IssueDate>
 		<cbc:DocumentTypeCode>GONDERIM_SEKLI</cbc:DocumentTypeCode>
 		<cbc:DocumentType>ELEKTRONIK</cbc:DocumentType>
 	</cac:AdditionalDocumentReference>
+
+
 	<cac:Signature>
 		<cbc:ID schemeID="VKN_TCKN">5750464002</cbc:ID>
 		<cac:SignatoryParty>
@@ -59,6 +63,8 @@
 			</cac:ExternalReference>
 		</cac:DigitalSignatureAttachment>
 	</cac:Signature>
+
+	
 	<cac:AccountingSupplierParty>
 		<cac:Party>
 			<cac:PartyIdentification>
@@ -84,6 +90,7 @@
 			</cac:Contact>
 		</cac:Party>
 	</cac:AccountingSupplierParty>
+	
 	<cac:AccountingCustomerParty>
 		<cac:Party>
 			<cac:PartyIdentification>
