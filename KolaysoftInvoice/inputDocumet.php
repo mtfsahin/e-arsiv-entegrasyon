@@ -1,6 +1,5 @@
 <?php 
-
-class InputDocument {
+    class InputDocument {
     public $xmlContent;
     public $destinationUrn;
     public $documentDate;
@@ -8,5 +7,15 @@ class InputDocument {
     public $sourceUrn;
     public $localId;
     public $documentId;
-    public $document_uuid = null;
-}
+    
+    public function __construct($xmlContent, $destinationUrn, $documentDate, $documentUUID, $sourceUrn, $localId, $documentId) {
+        $this->xmlContent = $xmlContent;
+        $this->destinationUrn = $destinationUrn;
+        $this->documentDate = $documentDate;
+        $this->documentUUID = $documentUUID;
+        $this->sourceUrn = $sourceUrn;
+        $this->localId = $localId;
+        $this->documentId = $documentId;
+    }
+
+}   
