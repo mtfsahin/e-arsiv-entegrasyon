@@ -7,6 +7,4 @@ require "ublInvoiceCreator.php";
 ublInvoiceCreate();
 
 
-
-
 ?>

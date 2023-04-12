@@ -10,7 +10,7 @@ $time = date('H:i:s');
 $date = date_create();
 $invoice_date = date_format($date, 'Y-m-d');
 $order_id =  rand(10000, 90000);
-$total_price = 400232.232;
+$total_price = 1;
 $yaziyla = 'Yalnız ' . sayiyiYaziyaCevir($total_price, 2, "TL,", "Kuruş", "#", null, null, null);
 $urun_sayi = 1;
 
@@ -31,15 +31,11 @@ $Customer_Country = 'Türkiye';
 $Customer_Name = 'test';
 $Customer_LastName = 'testsurname';
 
+// statik değişkenler
+$destinationUrnConfig = "mustafa9889.ma@gmail.com";
+$documentDateConfig= $invoice_date;
+$sourceUrnConfig = "urn:mail:defaultgb@sahanekitap.com.tr";
 
-$xmlContent = file_get_contents("e_arsiv_invoice.xml");
-$destinationUrn = "mustafa9889.ma@gmail.com";
-$documentDate = $invoice_date;
-$documentUUID = '';
-$sourceUrn = "urn:mail:defaultgb@sahanekitap.com.tr";
-$localId = "ABC-123";
-$documentId = $Fatura_ID;
-$inputDocument = new InputDocument($xmlContent, $destinationUrn, $documentDate, $documentUUID, $sourceUrn, $localId, $documentId);
 
 // Cart cofig
 $Products = 'test ürün'; 

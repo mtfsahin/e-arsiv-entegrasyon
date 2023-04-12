@@ -5,17 +5,7 @@ function ublInvoiceCreate()
 { 
     require "config.php";
 
-
-    echo 'UUID: ' . $UUIDnum;
-    echo '</br>';
-    echo 'AdditionalDocumentReference_ID: ' . $AdditionalDocumentReference_ID;
-    echo '</br>';
-    echo 'AdditionalDocumentReference_ID2: ' .$AdditionalDocumentReference_ID2;
-    echo '</br>';
-    echo '</br>';
-    echo '</br>';
-
-
+    
     // Fatura nesnesi oluşturma
     $doc = new DOMDocument("1.0", "UTF-8");
     $doc->formatOutput = true;
@@ -581,7 +571,7 @@ function ublInvoiceCreate()
     $xml_content = $doc->saveXML();
 
     fwrite($file, $xml_content);
-    fclose($file);
+    
     
     try {
         // Kullanıcı adı ve şifre
@@ -603,18 +593,55 @@ function ublInvoiceCreate()
 
         // Fatura bilgileri oluşturulur
         // Fatura gönderme işlemi gerçekleştirilir
-        $response = $client->sendInvoice([$inputDocument]);
+        
+        $xml = simplexml_load_string($xml_content);
 
+        $destinationUrn = $destinationUrnConfig;
+        $documentDate = $documentDateConfig;
+        
+
+
+        $documentId = $Fatura_ID;
+    
+        echo "Fatura ID: " . $documentId;
+
+        echo "<br/>";
+        echo "<br/>";
+
+        $documentUUID = (string)$xml->children('cbc', true)->UUID;
+
+        echo "documentUUID: " . $documentUUID . "\n";
+
+
+
+        $inputDocument = new InputDocument($xml_content, $destinationUrn, $documentDate, $documentUUID, $sourceUrn, $localId, $documentId);
+
+        //$response = $client->sendInvoice([$inputDocument]);
+
+
+        
         // Yanıt işlenir
         foreach ($response as $res) {
 
             echo "İşlem kodu: " . $res->code . "<br>";
             echo "Açıklama: " . $res->explanation . "<br>";
 
+
             if (isset($res->cause)) {
                 echo "Hata sebebi: " . $res->cause . "<br>";
             }
+
             echo "<br>";
+
+            if ($res->code == "200") {
+                $invoiceNumber = $res->invoiceNumber;
+                $ettn = $res->ettn;
+            
+                echo "Fatura başarıyla oluşturuldu. Fatura Numarası: " . $invoiceNumber . " ETTN: " . $ettn . "<br>";
+            
+            }
+
+
         }
     } catch (\Exception $e) {
         echo "Şuan işleminiz gerçekleştirilemiyor, lütfen daha sonra tekrar deneyiniz.";
